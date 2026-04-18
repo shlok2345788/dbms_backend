@@ -26,6 +26,7 @@ const register = async (req, res) => {
       user: { id, name, email, role, status }
     });
   } catch (error) {
+    console.error('Register error:', error.message);
     return res.status(500).json({ message: 'Failed to register user.' });
   }
 };
@@ -72,6 +73,7 @@ const login = async (req, res) => {
       }
     });
   } catch (error) {
+    console.error('Login error:', error.message);
     if (error.message === 'JWT_SECRET is not configured.') {
       return res.status(500).json({ message: 'Server is missing JWT_SECRET. Set it in Render and redeploy.' });
     }
