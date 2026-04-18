@@ -54,6 +54,10 @@ const login = async (req, res) => {
       });
     }
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: 'Server is missing JWT_SECRET. Set it in Render and redeploy.' });
+    }
+
     const token = generateToken(user);
 
     return res.json({
@@ -68,6 +72,9 @@ const login = async (req, res) => {
       }
     });
   } catch (error) {
+    if (error.message === 'JWT_SECRET is not configured.') {
+      return res.status(500).json({ message: 'Server is missing JWT_SECRET. Set it in Render and redeploy.' });
+    }
     return res.status(500).json({ message: 'Failed to login.' });
   }
 };
