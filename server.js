@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
   console.log('Starting AI Career Compass backend...');
   console.log(`PORT=${PORT}`);
   console.log(`DB_HOST=${process.env.DB_HOST || 'not set'}`);
+  console.log(`DB_PORT=${process.env.DB_PORT || 'not set'}`);
   console.log(`DB_NAME=${process.env.DB_NAME || 'not set'}`);
   console.log(`JWT_SECRET=${process.env.JWT_SECRET ? 'set' : 'missing'}`);
   await testConnection();
